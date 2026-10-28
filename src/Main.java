@@ -1,4 +1,3 @@
-
 import java.util.Scanner;
 
 public class Main {
@@ -10,11 +9,26 @@ public class Main {
         int backlogs = scanner.nextInt();
         int graduationYear = scanner.nextInt();
 
-        System.out.println("Candidate: " + name);
-        System.out.println("Percentage: " + percentage);
-        System.out.println("Backlogs: " + backlogs);
-        System.out.println("Graduation Year: " + graduationYear);
+        Candidate candidate = new Candidate(
+                name,
+                percentage,
+                backlogs,
+                graduationYear);
+
+        Job job = new Job(
+                "Infosys",
+                "Java Developer",
+                65.0,
+                0,
+                2026);
+        System.out.println("Candidate: " + candidate.getName());
+        System.out.println("Company: " + job.getCompany());
+        System.out.println("Role: " + job.getRole());
+        System.out.println("Minimum Percentage: " + job.getMinimumPercentage());
+        System.out.println("Maximum Backlogs: " + job.getMaximumBacklogs());
+        System.out.println("Required Graduation Year: " + job.getRequiredGraduationYear());
 
         scanner.close();
+
     }
 }
