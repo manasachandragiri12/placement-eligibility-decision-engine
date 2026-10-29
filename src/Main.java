@@ -1,7 +1,9 @@
+
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+
         Scanner scanner = new Scanner(System.in);
 
         String name = scanner.next();
@@ -21,41 +23,22 @@ public class Main {
                 65.0,
                 0,
                 2026);
-        boolean percentagePass = candidate.getPercentage() >= job.getMinimumPercentage();
 
-        boolean backlogPass = candidate.getBacklogs() <= job.getMaximumBacklogs();
+        EligibilityChecker checker = new EligibilityChecker();
 
-        boolean yearPass = candidate.getGraduationYear() == job.getRequiredGraduationYear();
-
-        boolean eligible = percentagePass && backlogPass && yearPass;
-        System.out.println("=================================");
+        System.out.println("============================");
         System.out.println("PLACEMENT ELIGIBILITY RESULT");
-        System.out.println("=================================");
+        System.out.println("============================");
         System.out.println();
 
         System.out.println("Candidate : " + candidate.getName());
-        System.out.println("Company :" + job.getCompany());
-        System.out.println("Role : " + job.getRole());
+        System.out.println("Company   : " + job.getCompany());
+        System.out.println("Role      : " + job.getRole());
+
         System.out.println();
 
-        if (percentagePass) {
-            System.out.println("Percentage : PASS");
-        } else {
-            System.out.println("Percentage : FAIL");
+        boolean eligible = checker.evaluate(candidate, job);
 
-        }
-
-        if (backlogPass) {
-            System.out.println("Backlogs : PASS");
-        } else {
-            System.out.println("Backlogs : FAIL");
-        }
-
-        if (yearPass) {
-            System.out.println("Graduation Year : PASS");
-        } else {
-            System.out.println("Graduation Year : FAIL");
-        }
         System.out.println();
 
         if (eligible) {
@@ -63,8 +46,9 @@ public class Main {
         } else {
             System.out.println("Final Result : NOT ELIGIBLE");
         }
-        System.out.println();
-        scanner.close();
 
+        System.out.println("============================");
+
+        scanner.close();
     }
 }
